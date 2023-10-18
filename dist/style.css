@@ -1,0 +1,27 @@
+body{
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    height: 60vh;
+    width: 50vw;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns:2fr 5fr;
+
+}
+.sidebar{
+    border-right: 2px solid black;
+    background: yellow;
+    display: grid;
+    grid-template-rows:1fr 5fr;
+    padding: 30px;
+}
+.title{
+    font-size: 1.8rem;
+}
+.todo-list{
+    background: green;
+}
