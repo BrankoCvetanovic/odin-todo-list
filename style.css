@@ -1,8 +1,12 @@
 body{
+    box-sizing: border-box;
     height: 100vh;
     display:flex;
     justify-content: center;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .container{
     height: 60vh;
@@ -47,9 +51,10 @@ body{
     font-size: 26px
 }
 .todo-list{
+    position: relative;
     display:flex;
     flex-direction: column;
-    padding:40px;
+    padding:5%;
 }
 .todo-list>button{
     font-size: 1.4rem;
@@ -64,15 +69,26 @@ body{
     -webkit-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.31); 
     box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.31);
 }
+.todo{
+    padding: 5px;
+    display:flex;
+    justify-content: space-between;
+}
 form{
+    box-sizing: border-box;
     position: absolute;
     background: white;
     z-index: 1;
-    display: grid;
+    display:none;
     grid-template-columns: repeat(4,1fr);
     grid-row: 1fr 1fr;
     gap:12px;
-    width: 39vw;
+    width: 90%;
+    border: 2px solid black;
+    padding: 8px;
+}
+.todo-display{
+    display: grid;
 }
 form>div{
     display: flex;
@@ -91,6 +107,63 @@ form>div:last-child{
     justify-content:end;
     padding: 8px;
     gap:8px;
+}
+
+.todo-btn>button {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.todo-btn>button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.todo-btn>button:hover {
+  background-color: #2c974b;
+}
+
+.todo-btn>button:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.todo-btn>button:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.todo-btn>button:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+#todo-close{
+    background-color: rgb(185, 48, 48);
+}
+#todo-close:hover{
+    background-color:  rgb(170, 40, 40);
 }
 input{
     width: 100%;
