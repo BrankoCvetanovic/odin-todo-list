@@ -1,4 +1,7 @@
-body{
+body{ 
+    background-image: url(cool-background.png);
+    background-repeat: no-repeat;
+    background-size:cover;
     box-sizing: border-box;
     height: 100vh;
     display:flex;
@@ -9,16 +12,14 @@ body{
     text-overflow: ellipsis;
 }
 .container{
-    height: 60vh;
-    width: 60vw;
-    border: 2px solid black;
+    height: 70vh;
+    width: 70vw;
     display: grid;
     grid-template-columns:2fr 5fr;
 
 }
 .sidebar{
-    border-right: 2px solid black;
-    background: yellow;
+    background: #F4CE14;
     display: grid;
     grid-template-rows:2fr 8fr;
     padding: 30px;
@@ -31,7 +32,7 @@ body{
     flex-direction: column;
     align-items: start;
     font-size: 1.3rem;
-    gap:10px;
+    gap:20px;
 }
 .nav> button{
     padding: 0;
@@ -40,7 +41,8 @@ body{
     text-align: left;
     font-size: 1.3rem;
 }
-.nav> button:hover{
+.nav> button:hover,
+.nav>button:focus{
     transform: scale(1.15);
     transition:ease-in 0.1s;
 }
@@ -50,58 +52,121 @@ body{
 .fa-stopwatch::before{
     font-size: 26px
 }
-.todo-list{
-    position: relative;
+.projects-container{
+    padding-left: 20px;
+    margin-top: -5px;
     display:flex;
     flex-direction: column;
-    padding:5%;
+    width: 100%;
 }
-.todo-list>button{
-    font-size: 1.4rem;
-    padding: 12px;
+.projects{
+    display:flex;
+    flex-direction: column;
+}
+.project-form-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+}
+.project-form{
+    display:none;
+    position: absolute;
+    margin-top: -10px;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    column-gap: 7px;
+   
+}
+#p-title{
+    grid-column: 1/3;
+}
+.new-project{
+    padding: 0;
     background: none;
-    border: 2px solid black;
-    border-radius: 18px;
+    border: none;
+    text-align: left;
+    font-size: 1rem;
 }
-.todo-list>button:hover{
+.new-project:hover{
+    transform: scale(1.15);
+    transition:ease-in 0.1s;
+}
+.new-project:hover .fa-plus  {
+    transform: rotate(180deg);
+    transition:ease-in 0.5s;
+}
+.todo-list-container{
+    background: #e8ebec;
+    display:flex;
+    flex-direction: column;
+    padding:8%;
+    gap: 10px;
+}
+.todo-list{
+    background: #e8ebec;
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.new-todo{
+    font-size: 1.4rem;
+    padding: 10px;
+    background: #e8ebec;
+    border: none;
+    border-bottom: #298e46 solid 4px;
+}
+.new-todo:hover{
     transform: scale(1.05);
     transition:ease 0.1s ;
-    -webkit-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.31); 
-    box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.31);
+    background: #d8dcdf;
 }
 .todo{
-    padding: 5px;
+    background: #e8ebec;
+    padding: 10px;
     display:flex;
-    justify-content: space-between;
+    gap: 20px;
+    border-bottom: #298e46 solid 4px;
 }
-form{
+.todo:hover{
+    background:  #d8dcdf;
+}
+.todo-title{
+    flex: 1;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+}
+.todo-form{
     box-sizing: border-box;
     position: absolute;
-    background: white;
+    background:#d8dcdf;
     z-index: 1;
     display:none;
     grid-template-columns: repeat(4,1fr);
     grid-row: 1fr 1fr;
-    gap:12px;
-    width: 90%;
-    border: 2px solid black;
+    gap:17px;
+    width: 100%;
     padding: 8px;
 }
-.todo-display{
+.display{
     display: grid;
 }
-form>div{
+.todo-form>div{
     display: flex;
     flex-direction: column;
 }
-form>div:first-child,
-form>div:nth-child(3){
+.todo-form>div:first-child,
+.todo-form>div:nth-child(3){
     grid-column: 1/3;
 }
-form>div:nth-child(2){
+.todo-form>div:nth-child(2){
     grid-column: 3/5;
 }
-form>div:last-child{
+.todo-form>div:last-child{
     display: flex;
     flex-direction: column;
     justify-content:end;
@@ -109,7 +174,7 @@ form>div:last-child{
     gap:8px;
 }
 
-.todo-btn>button {
+.btn{
   appearance: none;
   background-color: #2ea44f;
   border: 1px solid rgba(27, 31, 35, .15);
@@ -134,35 +199,39 @@ form>div:last-child{
   white-space: nowrap;
 }
 
-.todo-btn>button:focus:not(:focus-visible):not(.focus-visible) {
+.btn:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
 
-.todo-btn>button:hover {
+.btn:hover {
   background-color: #2c974b;
 }
 
-.todo-btn>button:focus {
+.btn:focus {
   box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
   outline: none;
 }
 
-.todo-btn>button:disabled {
+.btn:disabled {
   background-color: #94d3a2;
   border-color: rgba(27, 31, 35, .1);
   color: rgba(255, 255, 255, .8);
   cursor: default;
 }
 
-.todo-btn>button:active {
+.btn:active {
   background-color: #298e46;
   box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
-#todo-close{
+#todo-close,
+#p-close{
     background-color: rgb(185, 48, 48);
 }
 #todo-close:hover{
+    background-color:  rgb(170, 40, 40);
+}
+#p-close:hover{
     background-color:  rgb(170, 40, 40);
 }
 input{
