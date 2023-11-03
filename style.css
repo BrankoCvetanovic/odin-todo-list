@@ -59,7 +59,7 @@ body{
     flex-direction: column;
     width: 100%;
 }
-.projects{
+.project-list{
     display:flex;
     flex-direction: column;
 }
@@ -123,14 +123,34 @@ body{
 }
 .todo{
     background: #e8ebec;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display:flex;
     gap: 20px;
     border-bottom: #298e46 solid 4px;
     align-items: center;
+    position: relative;
 }
-.todo:hover{
-    background:  #d8dcdf;
+.description-container{
+    position: absolute;
+    padding-right: 2px;
+    width: 101%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.flex{
+    display: flex;
+}
+.todo-description{
+    z-index: 2;
+    background: #e8ebec;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 .todo-title{
     flex: 1;
@@ -333,4 +353,67 @@ input[type=text]:focus {
     border: solid white;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
+}
+.gg-details-more {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 20px;
+    height: 14px;
+    border: 2px solid transparent
+}
+.gg-details-more::after,
+.gg-details-more::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    height: 2px;
+    border-radius: 3px;
+    background: currentColor
+}
+.gg-details-more::before {
+    box-shadow: 0 4px 0 0;
+    top: 0;
+    width: 16px
+}
+.gg-details-more::after {
+    width: 10px;
+    bottom: 0
+}
+.gg-details-more:hover{
+    transform: scale(1.1);
+}
+.gg-close-o {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid;
+    border-radius: 40px;
+    z-index: 2;
+    background:#e8ebec;
+}
+.gg-close-o::after,
+.gg-close-o::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 12px;
+    height: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 3px
+}
+.gg-close-o::after {
+    transform: rotate(-45deg)
+}
+.gg-close-o:hover{
+    transform: scale(1.1);
 }
