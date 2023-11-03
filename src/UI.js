@@ -7,13 +7,17 @@ const todoName = document.getElementById("title");
 const todoDate = document.getElementById("dueDate");
 const todoDescription = document.getElementById("description");
 const todoPriority = document.getElementById("priority");
+
+const projectName = document.getElementById("p-title")
+
 export const home =Project("home");
-const todo1= Todo("Iznesi Djubre","12.1.2004","Blablabla","High");
-const todo2= Todo("Smrsaj","14.02.2015","truxturc","Low");
+const todo1= Todo("Iznesi Djubre","Potrudi se da izneses djubre napolju","12.01.2004","High");
+const todo2= Todo("Smrsaj","Skini salo sa stomaka","14.02.2015","Low");
 home.todoList.push(todo1);
 home.todoList.push(todo2);
 
-export const todoContainer=document.querySelector(".todo-list")
+export const todoContainer=document.querySelector(".todo-list");
+export const projectContainer=document.querySelector(".project-list")
 
 const todoForm=document.querySelector(".todo-form");
 const newTodoBtn=document.querySelector(".new-todo");
@@ -55,4 +59,8 @@ homeBtn.addEventListener("click", ()=>{
     populateHomePage()
 });
 
+projectForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const newProject=Project(projectName.value)
+})
 
