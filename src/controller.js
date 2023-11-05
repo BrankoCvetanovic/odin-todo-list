@@ -1,11 +1,34 @@
-import {todoContainer,projectContainer,home} from "./UI.js";
+import {todoContainer,projectContainer,currentProjectKey,setKey,home} from "./UI.js";
+import { projectList } from "./project.js";
+
 
 export function populateHomePage(){
         todoContainer.innerHTML="";
-        home.todoList.forEach((todo)=>{
-            makeTodoInterface(todo,home);
+        projectList[currentProjectKey].todoList.forEach((todo)=>{
+            makeTodoInterface(todo,projectList[currentProjectKey]);
         })
-    }
+}
+export function populateProjectsMenu(){
+    projectContainer.innerHTML="";
+    Object.keys(projectList).forEach(key=>{
+        if(key==="home"){
+            return
+        }
+        makeProjectInterface(projectList[key])
+})
+}
+
+function makeProjectInterface(project){
+    const newProject = document.createElement("button");
+    newProject.classList.add("project")
+    newProject.innerHTML=project.name;
+    newProject.addEventListener("click",()=>{
+        setKey(project.name)
+        populateHomePage();
+    })
+
+    projectContainer.appendChild(newProject);
+}
 function makeTodoInterface(todo,project){
         const todoInterface=document.createElement("div");
         todoInterface.classList.add("todo");
@@ -83,8 +106,8 @@ function makeTodoInterface(todo,project){
     };
 export function deleteTodo(index){
     home.todoList.splice(index,1)
+    if (currentProjectKey!=="home"){
+        projectList[currentProjectKey].todoList.splice(index,1)
+}
     populateHomePage();
     }
-export function populateProjectsMenu(){
-
-}

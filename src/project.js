@@ -6,3 +6,4 @@ export default function Project(name){
         todoList
     }
 }
+export const projectList={};

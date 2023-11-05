@@ -31,7 +31,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: start;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     gap:20px;
 }
 .nav> button{
@@ -39,12 +39,15 @@ body{
     background: none;
     border: none;
     text-align: left;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 .nav> button:hover,
 .nav>button:focus{
     transform: scale(1.15);
     transition:ease-in 0.1s;
+}
+.nav>button:focus{
+    border-bottom: 3px solid #f44114
 }
 .fa-calendar-day::before{
     font-size: 26px;
@@ -58,10 +61,28 @@ body{
     display:flex;
     flex-direction: column;
     width: 100%;
+    gap: 10px;
 }
 .project-list{
     display:flex;
     flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+.project{
+    padding: 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.3rem;
+}
+.project:hover,
+.project:focus{
+    transform: scale(1.1);
+    transition:ease-in 0.1s;
+}
+.project:focus{
+    border-bottom: 3px solid #f44114;
 }
 .project-form-container{
     display: flex;
@@ -86,7 +107,7 @@ body{
     background: none;
     border: none;
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 .new-project:hover{
     transform: scale(1.15);
