@@ -19,7 +19,7 @@ body{
 
 }
 .sidebar{
-    background: #F4CE14;
+    background: #E8DE2A;
     display: grid;
     grid-template-rows:2fr 8fr;
     padding: 30px;
@@ -47,7 +47,7 @@ body{
     transition:ease-in 0.1s;
 }
 .nav>button:focus{
-    border-bottom: 3px solid #f44114
+    border-bottom: 1px solid black;
 }
 .fa-calendar-day::before{
     font-size: 26px;
@@ -82,7 +82,7 @@ body{
     transition:ease-in 0.1s;
 }
 .project:focus{
-    border-bottom: 3px solid #f44114;
+    border-bottom: 1px solid black;
 }
 .project-form-container{
     display: flex;
@@ -135,7 +135,7 @@ body{
     padding: 10px;
     background: #e8ebec;
     border: none;
-    border-bottom: #298e46 solid 4px;
+    border-bottom: #355e3b solid 4px;
 }
 .new-todo:hover{
     transform: scale(1.05);
@@ -143,18 +143,28 @@ body{
     background: #d8dcdf;
 }
 .todo{
+    padding: 9px;
     background: #e8ebec;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-bottom: black solid 2px;
     display:flex;
     gap: 20px;
-    border-bottom: #298e46 solid 4px;
     align-items: center;
     position: relative;
 }
+.green{
+    border-right: #355e3b solid 4px;
+}
+.yellow{
+    border-right: #E8DE2A solid 4px;
+}
+.red{
+    border-right: #d32710 solid 4px;
+}
 .description-container{
     position: absolute;
-    padding-right: 2px;
+    padding-right: 4%;
     width: 101%;
     height: 100%;
     display: none;
@@ -181,6 +191,7 @@ body{
     flex-direction: column;
     flex: 1;
     position: relative;
+
 }
 .todo-form{
     box-sizing: border-box;

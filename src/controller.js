@@ -1,14 +1,14 @@
 import {todoContainer,projectContainer,currentProjectKey,setKey,home} from "./UI.js";
 import { projectList } from "./project.js";
+import { format} from 'date-fns'
 
-
-export function populateHomePage(){
+export function fillHomePage(){
         todoContainer.innerHTML="";
         projectList[currentProjectKey].todoList.forEach((todo)=>{
             makeTodoInterface(todo,projectList[currentProjectKey]);
         })
 }
-export function populateProjectsMenu(){
+export function fillProjectsMenu(){
     projectContainer.innerHTML="";
     Object.keys(projectList).forEach(key=>{
         if(key==="home"){
@@ -17,6 +17,14 @@ export function populateProjectsMenu(){
         makeProjectInterface(projectList[key])
 })
 }
+export function fillTodayPage(){
+    todoContainer.innerHTML="";
+    home.todoList.forEach((todo)=>{
+        if(todo.dueDate==format(new Date(),"dd.MM.yyyy.")){
+            makeTodoInterface(todo)
+        }
+    })
+}
 
 function makeProjectInterface(project){
     const newProject = document.createElement("button");
@@ -24,7 +32,7 @@ function makeProjectInterface(project){
     newProject.innerHTML=project.name;
     newProject.addEventListener("click",()=>{
         setKey(project.name)
-        populateHomePage();
+        fillHomePage();
     })
 
     projectContainer.appendChild(newProject);
@@ -33,14 +41,24 @@ function makeTodoInterface(todo,project){
         const todoInterface=document.createElement("div");
         todoInterface.classList.add("todo");
 
+        if (todo.priority=="Low"){
+            todoInterface.classList.add("green");
+        }
+        else if (todo.priority=="Mid"){
+            todoInterface.classList.add("yellow");
+        }
+        else if (todo.priority=="High"){
+            todoInterface.classList.add("red");
+        }
+
         const doneBtnContainer=document.createElement("label");
         doneBtnContainer.classList.add("checkbox-wrapper")
         const doneBtn=document.createElement("input");
         doneBtn.type="checkbox";
         doneBtnContainer.appendChild(doneBtn);
-        const checkmark =document.createElement("div");
-        checkmark.classList.add("checkmark");
-        doneBtnContainer.appendChild(checkmark);
+        const checkMark =document.createElement("div");
+        checkMark.classList.add("checkmark");
+        doneBtnContainer.appendChild(checkMark);
         todoInterface.appendChild(doneBtnContainer);
         if(todo.isDone===true){
             doneBtn.checked=true
@@ -94,20 +112,31 @@ function makeTodoInterface(todo,project){
 
         const todoRemove=document.createElement("div");
         todoRemove.classList.add("gg-trash");
+        todoRemove.setAttribute("id",todo.id)
         todoInterface.appendChild(todoRemove);
-        todoRemove.addEventListener("click",()=>{
-            const index=project.todoList.findIndex(object=>{
-                return object.title===todo.title
+        todoRemove.addEventListener("click",function(e){
+            const indexHome=home.todoList.findIndex(object=>{
+                return object.id===todo.id
             });
-            deleteTodo(index);
+            deleteTodo(indexHome,this.id);
         })
         
         todoContainer.appendChild(todoInterface);
     };
-export function deleteTodo(index){
-    home.todoList.splice(index,1)
-    if (currentProjectKey!=="home"){
-        projectList[currentProjectKey].todoList.splice(index,1)
-}
-    populateHomePage();
+export function deleteTodo(indexHome,id){
+    home.todoList.splice(indexHome,1)
+    Object.keys(projectList).forEach(key=>{    
+        if(key==="home"){
+            return
+        }
+    projectList[key].todoList.forEach((todo)=>{
+        if (todo.id==id){
+        const index=projectList[key].todoList.findIndex(object=>{
+                return object.id===todo.id
+            });
+            projectList[key].todoList.splice(index,1)
+        }
+        })
+    });
+    fillHomePage();
     }
