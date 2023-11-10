@@ -10,12 +10,16 @@ body{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+button{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .container{
     height: 70vh;
     width: 70vw;
     display: grid;
-    grid-template-columns:2fr 5fr;
+    grid-template-columns:2fr 7fr;
 
 }
 .sidebar{
@@ -69,6 +73,13 @@ body{
     gap: 10px;
     align-items: start;
 }
+.project-btn-container{
+    display: flex;
+    background: none;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
 .project{
     padding: 0;
     background: none;
@@ -81,9 +92,11 @@ body{
     transform: scale(1.1);
     transition:ease-in 0.1s;
 }
-.project:focus{
+.project:focus {
     border-bottom: 1px solid black;
+
 }
+
 .project-form-container{
     display: flex;
     flex-direction: column;
@@ -131,6 +144,7 @@ body{
     gap: 10px;
 }
 .new-todo{
+    display: none;
     font-size: 1.4rem;
     padding: 10px;
     background: #e8ebec;
@@ -138,9 +152,10 @@ body{
     border-bottom: #355e3b solid 4px;
 }
 .new-todo:hover{
-    transform: scale(1.05);
-    transition:ease 0.1s ;
     background: #d8dcdf;
+}
+.block{
+    display: block;
 }
 .todo{
     padding: 9px;
